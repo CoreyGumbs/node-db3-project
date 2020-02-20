@@ -7,8 +7,8 @@ JOIN Categories ON Products.categoryid = categories.categoryid
 
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
 SELECT orders.orderid, orderdetails.orderid, shippers.shippername FROM orders
-JOIN orderdetails ON orders.orderid = orderdetails.orderid
-JOIN Shippers on orders.shipperid = shippers.shipperid
+INNER JOIN orderdetails ON orders.orderid = orderdetails.orderid
+INNER JOIN Shippers on orders.shipperid = shippers.shipperid
 WHERE orders.orderdate < "2012-08-09"
 ORDER BY orderdate desc;
 
@@ -18,3 +18,6 @@ JOIN products ON orderdetails.productid = products.productid
 WHERE orderid = 10251;
 
 -- Display the OrderID, Customer's Company Name and the employee's LastName for every order. All columns should be labeled clearly. Displays 16,789 records.
+SELECT orders.orderid, customers.customername, employees.lastname FROM orders
+INNER JOIN customers ON orders.customerid = customers.customerid
+INNER JOIN employees ON orders.employeeid = employees.employeeid;
