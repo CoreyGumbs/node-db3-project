@@ -2,7 +2,8 @@
  
  module.exports = {
      find,
-     findById
+     findById,
+     findSteps
  }
 
  function find(){
@@ -10,11 +11,14 @@
  };
 
  function findById(id){
-     return db('schemes').where({id});
+     return db('schemes').where('id', id);
  };
 
  function findSteps(id){
-    return '';
+    return db('steps')
+    .join('schemes as s', 's.id', 'steps.scheme_id')
+    .select('steps.id','steps.step_number', 'steps.instructions', 's.scheme_name')
+    .where('steps.scheme_id', id);
  };
 
  function add(schemeData){
