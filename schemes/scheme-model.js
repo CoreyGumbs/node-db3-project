@@ -5,7 +5,9 @@
      findById,
      findSteps,
      add,
-     addStep
+     addStep,
+     update,
+     remove
  }
 
  function find(){
@@ -34,7 +36,7 @@
     .where('steps.scheme_id', id);
  }
 
- function update(udpateScheme, id){
+ function update(updateScheme, id){
     return db('schemes')
     .update(updateScheme)
     .where('schemes.id', id);
