@@ -61,6 +61,7 @@ router.post('/', (req, res) => {
 router.post('/:id/steps', (req, res) => {
   const stepData = req.body;
   const { id } = req.params; 
+  
 
   Schemes.findById(id)
   .then(scheme => {
@@ -113,5 +114,13 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({ message: 'Failed to delete scheme' });
   });
 });
+
+function validateId(id){
+  if(Number.isInteger(parseInt(id)) && id > 0){
+    return id;
+  }else{
+    return null;
+  }
+}
 
 module.exports = router;
